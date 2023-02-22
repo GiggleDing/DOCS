@@ -16,7 +16,7 @@ def index():
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=post)
+    return render_template('blog/index.html', posts=posts)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -28,7 +28,7 @@ def create():
 
         if not title:
             error = 'Title is required.'
-        
+
         if error is not None:
             flash(error)
         else:
@@ -52,7 +52,7 @@ def get_post(id, check_author=True):
 
     if post is None:
         abort(404, f"Post id {id} doesn't exist.")
-    
+
     if check_author and post['author_id'] != g.user['id']:
         abort(403)
     return post
@@ -62,14 +62,14 @@ def get_post(id, check_author=True):
 def update(id):
     post = get_post(id)
 
-    if request.method == "POST":
+    if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
         error = None
 
         if not title:
             error = 'Title is required.'
-        
+
         if error is not None:
             flash(error)
         else:
@@ -81,6 +81,7 @@ def update(id):
             )
             db.commit()
             return redirect(url_for('blog.index'))
+
     return render_template('blog/update.html', post=post)
 
 @bp.route('/<int:id>/delete', methods=('POST',))
