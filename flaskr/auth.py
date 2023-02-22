@@ -1,4 +1,7 @@
 import functools
+import docx
+from docx import Document
+from lxml import etree
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
@@ -13,8 +16,11 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
+        
         username = request.form['username']
         password = request.form['password']
+        file = request.files['file']
+        
         db = get_db()
         error = None
 
@@ -22,6 +28,8 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif not file:
+            error = 'file is required.'
 
         if error is None:
             try:
@@ -30,6 +38,37 @@ def register():
                     (username, generate_password_hash(password)),
                 )
                 db.commit()
+                
+                
+                # -------------------------------------------------------
+                file.save('/Users/giggleding/Documents/flask-tutorial/doc/text.docx')
+                
+                doc = Document('/Users/giggleding/Documents/flask-tutorial/doc/text.docx')
+                # 创建xml根元素
+                root = etree.Element('document')
+
+                # 解析每个段落
+                for para in doc.paragraphs:
+                    # 创建xml段落元素
+                    para_element = etree.SubElement(root, 'paragraph')
+                    # 设置段落样式属性
+                    para_element.set('style', para.style.name)
+                    # 解析每个段落中的文本
+                    for run in para.runs:
+                        # 创建xml文本元素
+                        text_element = etree.SubElement(para_element, 'text')
+                        # # 设置文本样式属性
+                        # text_element.set('style', run.font.name)
+                        # 添加文本内容
+                        text_element.text = run.text
+
+                # 保存xml文件
+                with open('example.xml', 'wb') as f:
+                    f.write(etree.tostring(root, pretty_print=True))
+                # --------------------------------------------------------
+
+
+
             except db.IntegrityError:
                 error = f"User {username} is already registered."
             else:
