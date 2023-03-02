@@ -12,7 +12,7 @@ export default {
     },
     data() {
         return {
-            "paragraph": this.pp.paragraph
+            "paragraph": this.pp
         }
     },
     computed: {

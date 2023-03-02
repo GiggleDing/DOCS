@@ -13,13 +13,10 @@ export default {
     },
     computed: {
         isBold() {
-            return this.word.properties.bold
-        },
-        isUnderline() {
-            return this.word.properties.underline
+            return this.word.bold
         },
         getColor() {
-            const color = this.word.properties.color;
+            const color = this.word.color;
             if (color && Array.isArray(color)) {
                 return `rgb(${color.join(",")})`;
             } else if (color && typeof color === "number") {
@@ -33,7 +30,7 @@ export default {
 </script>
 <template>
     <span>
-        <a-typography-text :bold="isBold" :underline="isUnderline" :color="getColor">
+        <a-typography-text :bold="isBold" :color="getColor">
             {{ word.text }}
         </a-typography-text>
     </span>
