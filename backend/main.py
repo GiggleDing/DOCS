@@ -12,8 +12,17 @@ def parse_docx_to_json(docx_file_path, json_file_path, db_file_path):
     c.execute("""
         CREATE TABLE IF NOT EXISTS paragraphs
         (id INTEGER PRIMARY KEY,
-        text TEXT,
         style TEXT)""")
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS runs
+        (id INTEGER PRIMARY KEY,
+        text TEXT,
+        style TEXT,
+        bold INTEGER,
+        color TEXT,
+        paragraph_id INTEGER,
+        FOREIGN KEY (paragraph_id)REFERENCES paragraphs(id))""")
+    
     result = {
         'paragraphs': [],
     }
@@ -21,7 +30,10 @@ def parse_docx_to_json(docx_file_path, json_file_path, db_file_path):
     for para in doc.paragraphs:
         para_text = []
         if re.match(r'\d(\.\d)*\s\S*', str(para.text)):
+            c.execute('INSERT INTO paragraphs (style) VALUES (?)', (para.style.name,))
+            paragraph_id = c.lastrowid
             for run in para.runs:
+                c.execute('INSERT INTO runs (text, style, bold, color, paragraph_id) VALUES (?, ?, ?, ?, ?)', (run.text, run.style.name, run.bold, str(run.font.color.rgb) if run.font.color.rgb else None, paragraph_id))
                 para_text.append({
                     'text': run.text,
                     'style': run.style.name,
@@ -29,7 +41,6 @@ def parse_docx_to_json(docx_file_path, json_file_path, db_file_path):
                     'color': str(run.font.color.rgb) if run.font.color.rgb else None
                 })
         if para_text:
-            c.execute('INSERT INTO paragraphs (text, style) VALUES (?, ?)', (json.dumps(para_text), para.style.name))
             result['paragraphs'].append({
                 'text': para_text,
                 'style': para.style.name
