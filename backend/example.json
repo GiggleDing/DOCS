@@ -1,0 +1,62 @@
+{
+    "paragraphs": [
+        {
+            "text": [
+                {
+                    "text": "1 ",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                },
+                {
+                    "text": "\u89c2\u97f3\u5728",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                },
+                {
+                    "text": "\u8fdc\u8fdc",
+                    "style": "Default Paragraph Font",
+                    "bold": true,
+                    "color": null
+                },
+                {
+                    "text": "\u7684\u5c71\u4e0a\uff0c",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                },
+                {
+                    "text": "\u7f42\u7c9f",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": "4472C4"
+                },
+                {
+                    "text": "\u5728\u7f42\u7c9f\u7684\u7530\u91cc\u3002",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                }
+            ],
+            "style": "Normal"
+        },
+        {
+            "text": [
+                {
+                    "text": "1.1 ",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                },
+                {
+                    "text": "\u8fd9\u4e16\u754c\u8001\u8fd9\u6837\uff0c\u603b\u8fd9\u6837\u3002",
+                    "style": "Default Paragraph Font",
+                    "bold": null,
+                    "color": null
+                }
+            ],
+            "style": "Normal"
+        }
+    ]
+}
