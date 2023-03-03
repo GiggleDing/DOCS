@@ -20,12 +20,10 @@ export default {
         },
         getColor() {
             const color = this.word.color;
-            if (color && Array.isArray(color)) {
-                return `rgb(${color.join(",")})`;
-            } else if (color && typeof color === "number") {
-                return `rgb(${color},${color},${color})`;
+            if (color && typeof color === "string" && color.length === 6) {
+                return `#${color}`;
             } else {
-                return color;
+                return null;
             }
         }
     }
@@ -33,8 +31,8 @@ export default {
 </script>
 <template>
     <span>
-        <a-typography-text :bold="isBold" :color="getColor">
-            {{ word.text }}
-        </a-typography-text>
+            <a-typography-text :bold="isBold">
+                {{ word.text }}
+            </a-typography-text>
     </span>
 </template>
