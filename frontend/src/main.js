@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, VueElement } from 'vue'
 import ArcoVue from '@arco-design/web-vue/es/arco-vue'
 import ArcoVueIcon from '@arco-design/web-vue/es/icon'
 import App from './App.vue'

@@ -1,7 +1,12 @@
 <script>
-
+import test from '../components/charts/test.vue'
+export default {
+	components: {
+		test
+	}
+}
 </script>
 
 <template>
-	<p>nihao</p>
+	<test />
 </template>
