@@ -13,7 +13,10 @@ export default {
     },
     computed: {
         isBold() {
-            return this.word.bold
+            if(this.word.bold === 1)
+                return true
+            else
+                return false
         },
         getColor() {
             const color = this.word.color;

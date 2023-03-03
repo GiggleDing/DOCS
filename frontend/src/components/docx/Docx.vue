@@ -27,8 +27,7 @@ export default {
 }
 </script>
 <template>
-    <p>{{ docx }}</p>
     <a-typography>
-        <Paragraph v-for="item in docx[0]" :pp="item"/>
+        <Paragraph v-for="item in docx" :pp="item"/>
     </a-typography>
 </template>
