@@ -1,7 +1,5 @@
 <script>
-import { defineComponent } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
 	methods: {

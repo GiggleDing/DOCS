@@ -1,10 +1,7 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+<script>
+
 </script>
 
 <template>
-  <main>
-    <!-- <TheWelcome /> -->
-    <a-textarea placeholder="Please enter something."/>
-  </main>
+	<p>nihao</p>
 </template>
