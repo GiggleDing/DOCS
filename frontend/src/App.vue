@@ -1,7 +1,11 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import login from './components/user/login.vue'
 
 export default {
+	components: {
+		login
+	},
 	methods: {
 		onClickMenuItem(key) {
 			Message.info({ content: `You select ${key}`, showIcon: true})
@@ -17,7 +21,7 @@ export default {
 			<nav>
 			<a-menu
 				:default-open-keys="['1']"
-				:default-selected-keys="['0_3']"
+				:default-selected-keys="['0_1']"
 				:style="{ width: '100% '}"
 				@menu-item-click="onClickMenuItem">
 				<RouterLink to="/">
@@ -38,32 +42,11 @@ export default {
 						分析结果
 					</a-menu-item>
 				</RouterLink>
-				<a-sub-menu key="1">
-					<template #title>
-						<IconCalendar></IconCalendar>
-						Navigation 1
-					</template>
-					<a-menu-item key="1_1">Menu 1</a-menu-item>
-					<a-menu-item key="1_2">Menu 2</a-menu-item>
-					<a-sub-menu key="2" title="Navigation 2">
-						<a-menu-item key="2_1">Menu 1</a-menu-item>
-						<a-menu-item key="2_2">Menu 2</a-menu-item>
-					</a-sub-menu>
-					<a-sub-menu key="3" title="Navigation 3">
-						<a-menu-item key="3_1">Menu 1</a-menu-item>
-						<a-menu-item key="3_2">Menu 2</a-menu-item>
-						<a-menu-item key="3_3">Menu 3</a-menu-item>
-					</a-sub-menu>
-				</a-sub-menu>
-				<a-sub-menu key="4">
-					<template #title>
-						<IconCalendar></IconCalendar> Navigation 4
-					</template>
-					<a-menu-item key="4_1">Menu 1</a-menu-item>
-					<a-menu-item key="4_2">Menu 2</a-menu-item>
-					<a-menu-item key="4_3">Menu 3</a-menu-item>
-					<a-menu-item key="4_4">Menu 4</a-menu-item>
-				</a-sub-menu>
+				<RouterLink to="/login">
+					<a-menu-item key="0_4">
+						<IconUser></IconUser>用户
+					</a-menu-item>
+				</RouterLink>
 			</a-menu>
 			</nav>
 			<template #trigger="{ collapsed }">
