@@ -44,7 +44,12 @@ export default {
 				</RouterLink>
 				<RouterLink to="/login">
 					<a-menu-item key="0_4">
-						<IconUser></IconUser>用户
+						<IconUser></IconUser>登陆
+					</a-menu-item>
+				</RouterLink>
+				<RouterLink to="/register">
+					<a-menu-item key="0_5">
+						<IconUser></IconUser>注册
 					</a-menu-item>
 				</RouterLink>
 			</a-menu>

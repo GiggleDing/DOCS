@@ -20,7 +20,7 @@ export default{
     },
     methods: {
         handleSubmit() {
-            axios.post('http://127.0.0.1:5000/auth/login', {
+            axios.post('http://127.0.0.1:5000/auth/register', {
                 username: this.form.username,
                 password: this.form.password
             })
@@ -39,6 +39,7 @@ export default{
 </script>
 
 <template>
+    <h1>注册</h1>
     <a-form :model="form" :style="{ width: '600px' }" @submit="handleSubmit">
         <a-form-item :rules="usernameRules" field="username" tooltip="请输入6～8位字母、数字组合，且不能以数字开头" label="Username">
             <a-input v-model="form.username" placeholder="Please enter your username..." allow-clear />
