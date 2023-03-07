@@ -17,6 +17,9 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
     
+    if not os.path.exists('upload'):
+        os.makedirs('upload')
+    
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
@@ -33,5 +36,8 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import docx
+    app.register_blueprint(docx.bp)
     
     return app

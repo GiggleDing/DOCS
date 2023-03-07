@@ -1,5 +1,6 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { Message} from '@arco-design/web-vue';
 import login from './components/user/login.vue'
 
 export default {

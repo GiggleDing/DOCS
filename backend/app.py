@@ -83,7 +83,7 @@ def parse_docx(docx_file_path, db_file_path):
         bold INTEGER,
         color TEXT,
         paragraph_id INTEGER,
-        FOREIGN KEY (paragraph_id)REFERENCES paragraphs(id))""")
+        FOREIGN KEY (paragraph_id) REFERENCES paragraphs(id))""")
 
     for para in doc.paragraphs:
         para_text = []
@@ -95,48 +95,4 @@ def parse_docx(docx_file_path, db_file_path):
     
     conn.commit()
     conn.close()
-
-@app.route('/auth/register', methods=['POST'])
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    db = get_db()
-
-    if not username:
-        return jsonify({'error': 'Username is required.'}), 400
-    elif not password:
-        return jsonify({'error': 'Password is required.'}), 400
-    try:
-        db.execute(
-            "INSERT INTO (username, password) VALUES (?, ?)",
-            (username, generate_password_hash(password))
-        )
-        db.commit()
-    except db.IntegrityError:
-        return jsonify({'error': f"User {username} is already registered."}), 400
-    return jsonify({'message': 'User registered successfully.'}), 201
-
-@app.route('/auth/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
-    db = get_db()
-
-    user = db.execute(
-        'SELECT * FROM user WHERE username = ?',
-        (username,)
-    ).fetchone()
-
-    if user in None:
-        return jsonify({'error': 'Incorrect username.'}), 401
-    elif not check_password_hash(user['password'], password):
-        return jsonify({'error': 'Incorrect password.'}), 401
     
-    session['username'] = username
-    session['logged_in'] = True
-
-    return jsonify({'message': 'User logged successfully.'}), 200
-
-@app.route('/auth/logout')
-def logout():
-    session.clear()
