@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import register from '../../api'
 
 export default{
     data() {
@@ -20,13 +20,7 @@ export default{
     },
     methods: {
         handleSubmit() {
-            axios.post('http://127.0.0.1:5000/auth/register', {
-                username: this.form.username,
-                password: this.form.password
-            })
-                .then(response => {
-                    this.$router.push('/')
-                })
+            register()
         }
     },
     mounted() {

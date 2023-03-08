@@ -1,7 +1,5 @@
 <script>
-import axios from 'axios'
 import { useUserStore } from '../../store'
-import { Message } from '@arco-design/web-vue'
 
 export default{
     data() {
@@ -23,9 +21,8 @@ export default{
     },
     methods: {
         handleSubmit() {
-            Message.success('Hello')
             this.userStore.login({
-                usrename: this.form.username,
+                username: this.form.username,
                 password: this.form.password
             })
         }

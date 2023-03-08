@@ -1,12 +1,15 @@
 <script>
-import test from '../../components/charts/test.vue'
+import uploadButton from '../../components/docx/upload/index.vue'
 export default {
 	components: {
-		test
+		uploadButton
 	}
 }
 </script>
 
 <template>
-	<test />
+	<div>
+		<p>👋</p>
+		<uploadButton />
+	</div>
 </template>

@@ -1,8 +1,9 @@
 import { defineStore } from "pinia"
-import { clearToken } from "../../../utils/auth"
+import { setToken, clearToken } from "../../../utils/auth"
 import {
-    login as userLogin
-} from '../../../api/user'
+    login as userLogin,
+    logout as userLogout
+} from '../../../api'
 
 const useUserStore = defineStore('user', {
     state: () => {
@@ -17,10 +18,17 @@ const useUserStore = defineStore('user', {
         async login(loginForm) {
             try{
                 const res = await userLogin(loginForm)
-                setToken(res.data.token)
+                setToken(res.data.session_id)
             } catch(err) {
                 clearToken()
                 throw err
+            }
+        },
+        async logout() {
+            try {
+                await userLogout()
+            } finally {
+                clearToken()
             }
         }
     }

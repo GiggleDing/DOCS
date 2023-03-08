@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
+    Blueprint, g, request, session, jsonify
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from DOCX.db import get_db
@@ -31,7 +31,9 @@ def register():
 @bp.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username')
+    print(username)
     password = request.json.get('password')
+    print(password)
     db = get_db()
 
     user = db.execute(
@@ -47,7 +49,7 @@ def login():
     session.clear()
     session['user_id'] = user['id']
 
-    return jsonify({'message': 'User logged successfully.'}), 200
+    return jsonify({'message': 'User logged successfully.', 'session_id': session}), 200
 
 @bp.before_app_request
 def load_logged_in_user():

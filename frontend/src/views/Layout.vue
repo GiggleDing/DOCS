@@ -1,22 +1,14 @@
 <script>
+import { Message } from '@arco-design/web-vue';
 export default{
-    // methods: {
-	// 	onClickMenuItem(key) {
-	// 		Message.info({ content: `You select ${key}`, showIcon: true})
-	// 	}
-	// },
-    // mounted() {
-	// 	axios.get(
-	// 		'http://127.0.0.1:5000/auth/check_login',
-	// 		{withCredentials: true})
-	// 		.then(response => {
-	// 			if(response.data.logged_in) {
-	// 				console.log('用户已登录')
-	// 			} else {
-	// 				console.log('用户未登录')
-	// 			}
-	// 		})
-    // }
+    methods: {
+		onClickMenuItem(key) {
+			Message.info({ content: `You select ${key}`, showIcon: true})
+		}
+	},
+    mounted() {
+		
+    }
 }
 </script>
 
