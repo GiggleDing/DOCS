@@ -1,5 +1,7 @@
 <script>
 import axios from 'axios'
+import { useUserStore } from '../../store'
+import { Message } from '@arco-design/web-vue'
 
 export default{
     data() {
@@ -15,18 +17,17 @@ export default{
             passwordRules: {
                 required: true,
                 match: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/
-            }
+            },
+            userStore: useUserStore()
         }
     },
     methods: {
         handleSubmit() {
-            axios.post('http://127.0.0.1:5000/auth/login', {
-                username: this.form.username,
+            Message.success('Hello')
+            this.userStore.login({
+                usrename: this.form.username,
                 password: this.form.password
             })
-                .then(response => {
-                    this.$router.push('/')
-                })
         }
     },
     mounted() {
