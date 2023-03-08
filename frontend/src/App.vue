@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { Message} from '@arco-design/web-vue';
 import login from './components/user/login.vue'
+import axios from 'axios';
 
 export default {
 	components: {
@@ -11,7 +12,19 @@ export default {
 		onClickMenuItem(key) {
 			Message.info({ content: `You select ${key}`, showIcon: true})
 		}
-	}
+	},
+    mounted() {
+		axios.get(
+			'http://127.0.0.1:5000/auth/check_login',
+			{withCredentials: true})
+			.then(response => {
+				if(response.data.logged_in) {
+					console.log('用户已登录')
+				} else {
+					console.log('用户未登录')
+				}
+			})
+    },
 }
 </script>
 
