@@ -1,13 +1,12 @@
 <script>
-import Layout from './views/Layout.vue'
-
+import test from '../../components/charts/test.vue'
 export default {
 	components: {
-        Layout
-    },
+		test
+	}
 }
 </script>
 
 <template>
-	<Layout />
+	<test />
 </template>
